@@ -183,6 +183,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../1.0.24/" title="1.0.24" class="md-nav__link">
+      1.0.24
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../1.0.23/" title="1.0.23" class="md-nav__link">
       1.0.23
     </a>
@@ -530,7 +542,7 @@
               
                 
                 
-                <h1 id="api-docs-v1023">API Docs - v1.0.23</h1>
+                <h1 id="api-docs-v1024">API Docs - v1.0.24</h1>
 <h2 id="sink">Sink</h2>
 <h3 id="jms-sink">jms <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#sink">(Sink)</a></em></h3>
 <p style="word-wrap: break-word">JMS Sink allows users to subscribe to a JMS broker and publish JMS messages.</p>
@@ -616,16 +628,18 @@
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<pre><code>@sink(type='jms', @map(type='xml'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST', connection.factory.type='topic',connection.factory.jndi.name='TopicConnectionFactory')define stream inputStream (name string, age int, country string);
+<pre><code>@sink(type='jms', @map(type='xml'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST', connection.factory.type='topic',connection.factory.jndi.name='TopicConnectionFactory')
+define stream inputStream (name string, age int, country string);
 </code></pre>
 
-<p style="word-wrap: break-word">Following example illustrates how to publish to an ActiveMQ topic.</p>
+<p style="word-wrap: break-word">This example shows how to publish to an ActiveMQ topic.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
-<pre><code>@sink(type='jms', @map(type='xml'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST')define stream inputStream (name string, age int, country string);
+<pre><code>@sink(type='jms', @map(type='xml'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='vm://localhost',destination='DAS_JMS_OUTPUT_TEST')
+define stream inputStream (name string, age int, country string);
 </code></pre>
 
-<p style="word-wrap: break-word">Following example illustrates how to publish to an ActiveMQ queue. Note that we are not providing properties like connection factory type</p>
+<p style="word-wrap: break-word">This example shows how to publish to an ActiveMQ queue. Note that we are not providing properties like connection factory type</p>
 
 <h2 id="source">Source</h2>
 <h3 id="jms-source">jms <em><a target="_blank" href="https://wso2.github.io/siddhi/documentation/siddhi-4.0/#source">(Source)</a></em></h3>
@@ -752,16 +766,18 @@
 </table></p>
 <p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
-<pre><code>@source(type='jms', @map(type='json'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='tcp://localhost:61616',destination='DAS_JMS_TEST', connection.factory.type='topic',connection.factory.jndi.name='TopicConnectionFactory')define stream inputStream (name string, age int, country string);
+<pre><code>@source(type='jms', @map(type='json'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='tcp://localhost:61616',destination='DAS_JMS_TEST', connection.factory.type='topic',connection.factory.jndi.name='TopicConnectionFactory')
+define stream inputStream (name string, age int, country string);
 </code></pre>
 
-<p style="word-wrap: break-word">Following example illustrates how to connect to an ActiveMQ topic and receive messages.</p>
+<p style="word-wrap: break-word">This example shows how to connect to an ActiveMQ topic and receive messages.</p>
 
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span></p>
-<pre><code>@source(type='jms', @map(type='json'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='tcp://localhost:61616',destination='DAS_JMS_TEST' )define stream inputStream (name string, age int, country string);
+<pre><code>@source(type='jms', @map(type='json'), factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', provider.url='tcp://localhost:61616',destination='DAS_JMS_TEST' )
+define stream inputStream (name string, age int, country string);
 </code></pre>
 
-<p style="word-wrap: break-word">Following example illustrates how to connect to an ActiveMQ queue and receive messages. Note that we are not providing properties like connection factory type</p>
+<p style="word-wrap: break-word">This example shows how to connect to an ActiveMQ queue and receive messages. Note that we are not providing properties like connection factory type</p>
                 
                   
                 
