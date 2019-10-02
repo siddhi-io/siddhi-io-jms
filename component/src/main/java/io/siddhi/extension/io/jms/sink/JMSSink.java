@@ -149,7 +149,7 @@ public class JMSSink extends Sink {
     public void publish(Object payload, DynamicOptions transportOptions, State state) {
         String topicQueueName = destination.getValue(transportOptions);
         executorService.execute(new JMSPublisher(topicQueueName, jmsStaticProperties,
-                clientConnector, payload));
+                clientConnector, payload, transportOptions, this));
     }
 
     @Override
