@@ -18,6 +18,8 @@
  */
 package io.siddhi.extension.io.jms.sink;
 
+import io.siddhi.core.exception.ConnectionUnavailableException;
+import io.siddhi.core.util.transport.DynamicOptions;
 import io.siddhi.extension.io.jms.sink.exception.JMSSinkAdaptorRuntimeException;
 import org.apache.log4j.Logger;
 import org.wso2.transport.jms.contract.JMSClientConnector;
@@ -41,13 +43,20 @@ public class JMSPublisher implements Runnable {
     private Map<String, String> jmsProperties;
     private JMSClientConnector jmsClientConnector;
     private Message message;
+    private DynamicOptions transportOptions;
+    private JMSSink jmsSink;
+    private  Object payload;
 
     public JMSPublisher(String destination, Map<String, String> staticJMSProperties,
-                        JMSClientConnector jmsClientConnector, Object payload) {
+                        JMSClientConnector jmsClientConnector, Object payload, DynamicOptions transportOptions,
+                        JMSSink jmsSink) {
         this.jmsProperties = new HashMap<>();
         this.jmsProperties.putAll(staticJMSProperties);
         this.jmsProperties.put(JMSConstants.PARAM_DESTINATION_NAME, destination);
         this.jmsClientConnector = jmsClientConnector;
+        this.transportOptions = transportOptions;
+        this.payload = payload;
+        this.jmsSink = jmsSink;
         try {
             this.message = handleMessage(payload);
         } catch (JMSException | JMSConnectorException e) {
@@ -61,10 +70,9 @@ public class JMSPublisher implements Runnable {
         try {
             jmsClientConnector.send(message, jmsProperties.get(JMSConstants.PARAM_DESTINATION_NAME));
         } catch (JMSConnectorException e) {
-            log.error("Error sending JMS message to destination: "
-                    + jmsProperties.get(JMSConstants.PARAM_DESTINATION_NAME), e);
-            throw new JMSSinkAdaptorRuntimeException("Error sending JMS message to destination: "
-                    + jmsProperties.get(JMSConstants.PARAM_DESTINATION_NAME), e);
+            jmsSink.onError(payload, transportOptions,
+                    new ConnectionUnavailableException("Error sending JMS message to destination: "
+                            + jmsProperties.get(JMSConstants.PARAM_DESTINATION_NAME), e));
         }
     }
 
