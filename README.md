@@ -19,12 +19,12 @@ For information on <a target="_blank" href="https://siddhi.io/">Siddhi</a> and i
 
 ## Latest API Docs 
 
-Latest API Docs is <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/api/2.0.2">2.0.2</a>.
+Latest API Docs is <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/api/2.0.3">2.0.3</a>.
 
 ## Features
 
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/api/2.0.2/#jms-sink">jms</a> *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#sink">(Sink)</a>*<br><div style="padding-left: 1em;"><p>JMS Sink allows users to subscribe to a JMS broker and publish JMS messages.</p></div>
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/api/2.0.2/#jms-source">jms</a> *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#source">(Source)</a>*<br><div style="padding-left: 1em;"><p>JMS Source allows users to subscribe to a JMS broker and receive JMS messages. It has the ability to receive Map messages and Text messages.</p></div>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/api/2.0.3/#jms-sink">jms</a> *(<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#sink">Sink</a>)*<br> <div style="padding-left: 1em;"><p><p style="word-wrap: break-word;margin: 0;">JMS Sink allows users to subscribe to a JMS broker and publish JMS messages.</p></p></div>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/api/2.0.3/#jms-source">jms</a> *(<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#source">Source</a>)*<br> <div style="padding-left: 1em;"><p><p style="word-wrap: break-word;margin: 0;">JMS Source allows users to subscribe to a JMS broker and receive JMS messages. It has the ability to receive Map messages and Text messages.</p></p></div>
 
 ## Dependencies 
 
