@@ -121,24 +121,59 @@ import java.util.Map;
                         defaultValue = "default")
         },
         examples = {
-                @Example(description = "This example shows how to connect to an ActiveMQ topic and "
-                        + "receive messages.",
-                        syntax = "@source(type='jms', @map(type='json'), "
+                @Example(syntax = "@source(type='jms', @map(type='json'), "
                                 + "factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', "
                                 + "provider.url='tcp://localhost:61616',"
                                 + "destination='DAS_JMS_TEST', "
                                 + "connection.factory.type='topic',"
                                 + "connection.factory.jndi.name='TopicConnectionFactory'"
                                 + ")\n" +
-                                "define stream inputStream (name string, age int, country string);"),
-                @Example(description = "This example shows how to connect to an ActiveMQ queue and "
-                        + "receive messages. Note that we are not providing properties like connection factory type",
-                        syntax = "@source(type='jms', @map(type='json'), "
+                                "define stream inputStream (name string, age int, country string);",
+                        description = "This example shows how to connect to an ActiveMQ topic and receive messages."),
+                @Example(syntax = "@source(type='jms', @map(type='json'), "
                                 + "factory.initial='org.apache.activemq.jndi.ActiveMQInitialContextFactory', "
                                 + "provider.url='tcp://localhost:61616',"
                                 + "destination='DAS_JMS_TEST' "
                                 + ")\n" +
-                                "define stream inputStream (name string, age int, country string);")
+                                "define stream inputStream (name string, age int, country string);",
+                        description = "This example shows how to connect to an ActiveMQ queue and receive messages." +
+                                " Note that we are not providing properties like connection factory ."),
+                @Example(syntax = "@source(type = 'jms', destination = 'Q'," +
+                                "factory.initial = 'com.tibco.tibjms.naming.TibjmsInitialContextFactory'," +
+                                "provider.url = 'tibjmsnaming://localhost:7222'," +
+                                "connection.factory.jndi.name = 'QueueConnectionFactory'," +
+                                "connection.factory.type = 'queue', java.naming.security.principal = 'USER_NAME'," +
+                                "java.naming.security.credentials = 'PASSWORD', transport.jms.UserName = 'EMSUSER'," +
+                                "transport.jms.Password = 'EMSPASSWORD' \n" +
+                                "@map(type = 'xml'))\n" +
+                                "define stream ProductStream (productRef string, productName string, colour string," +
+                                "price double, available bool);",
+                        description = "This example shows how to receive messages from a queue in Tibco EMS server." +
+                                "Note that in order to receive messages from the Tibco server, you need to download" +
+                                " the Tibco JAR from the Tibco site " +
+                                "(https://www.tibco.com/products/tibco-messaging/downloads) and deploy them. e.g., " +
+                                "If you are trying this out in WSO2 Stream Processor, you need to download" +
+                                " this jar, convert it into an OSGi bundle and deploy the converted file in the " +
+                                "'<SP_HOME>/lib' directory. \n" +
+                                "In this scanario, the input data is received in XML format as shown in the " +
+                                "following sample.\n" +
+                                "<product>\n" +
+                                "   <productRef>CGR11GB84</productRef>\n" +
+                                "   <productName>Train</productName>\n" +
+                                "   <colour>red</colour>\n" +
+                                "   <price>16.64</price>\n" +
+                                "   <available>true</available>\n" +
+                                "</product>\n" +
+                                "In order to receive this XML message, the 'ProductStream' input stream defines a " +
+                                "matching schema with the same attributes, and '@map' annotation specifies 'XML' as" +
+                                " the mapping type. Here the connection factory type is a queue. This queue is named" +
+                                "'QueueConnectionFactory'. The 'tibjmsnaming://localhost:7222' provider URL " +
+                                "establishes the JMS connection. The 'java.naming.security.principal' and " +
+                                "'java.naming.security.credentials' properties enable authentication via an EMS " +
+                                "username and an EMS password. Then you need to add the 'transport.jms.UserName' and" +
+                                " 'transport.jms.Password' properties as custom properties in order to specify the " +
+                                "username and the password to access the EMS server."
+                )
         }
 )
 public class JMSSource extends Source {
