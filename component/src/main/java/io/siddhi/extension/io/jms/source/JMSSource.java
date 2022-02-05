@@ -33,7 +33,8 @@ import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.core.util.transport.OptionHolder;
 import io.siddhi.extension.io.jms.source.exception.JMSInputAdaptorRuntimeException;
 import io.siddhi.extension.io.jms.util.JMSOptionsMapper;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.wso2.transport.jms.contract.JMSServerConnector;
 import org.wso2.transport.jms.exception.JMSConnectorException;
 import org.wso2.transport.jms.receiver.JMSServerConnectorImpl;
@@ -142,7 +143,7 @@ import java.util.Map;
         }
 )
 public class JMSSource extends Source {
-    private static final Logger log = Logger.getLogger(JMSSource.class);
+    private static final Logger log = LogManager.getLogger(JMSSource.class);
     private SourceEventListener sourceEventListener;
     private OptionHolder optionHolder;
     private JMSServerConnector jmsServerConnector;

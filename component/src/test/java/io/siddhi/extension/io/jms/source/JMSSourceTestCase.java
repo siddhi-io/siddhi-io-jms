@@ -28,7 +28,9 @@ import io.siddhi.core.util.SiddhiTestHelper;
 import io.siddhi.extension.io.jms.source.client.JMSClient;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
@@ -43,7 +45,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class JMSSourceTestCase {
     private static final String PROVIDER_URL = "vm://localhost?broker.persistent=false,";
-    private static Logger log = Logger.getLogger(JMSSourceTestCase.class);
+    private static final Logger log = (Logger) LogManager.getLogger(JMSSourceTestCase.class);
     private List<String> receivedEventNameList;
     private int waitTime = 50;
     private int timeout = 30000;
@@ -347,9 +349,17 @@ public class JMSSourceTestCase {
     @Test
     public void testJMSTopicSource5() throws InterruptedException {
         log.info("Test with connection unavailable exception");
-        log = Logger.getLogger(Source.class);
-        UnitTestAppender appender = new UnitTestAppender();
-        log.addAppender(appender);
+
+        UnitTestAppender appender = new UnitTestAppender("UnitTestAppender", null);
+        final Logger logger = (Logger) LogManager.getRootLogger();
+        logger.setLevel(Level.ALL);
+        logger.addAppender(appender);
+        appender.start();
+
+
+//        log = Logger.getLogger(Source.class);
+//        UnitTestAppender appender = new UnitTestAppender();
+//        log.addAppender(appender);
         receivedEventNameList = new ArrayList<>(2);
 
         // starting the ActiveMQ broker
@@ -382,7 +392,8 @@ public class JMSSourceTestCase {
                 + "    </event>\n"
                 + "</events>");
         Thread.sleep(1000);
-        AssertJUnit.assertTrue(appender.getMessages().contains("Exception in starting the JMS receiver for stream"));
+        AssertJUnit.assertTrue(((UnitTestAppender) logger.getAppenders().
+                get("UnitTestAppender")).getMessages().contains("Exception in starting the JMS receiver for stream"));
         siddhiManager.shutdown();
     }
 

@@ -21,7 +21,6 @@ package io.siddhi.extension.io.jms.sink;
 import io.siddhi.core.exception.ConnectionUnavailableException;
 import io.siddhi.core.util.transport.DynamicOptions;
 import io.siddhi.extension.io.jms.sink.exception.JMSSinkAdaptorRuntimeException;
-import org.apache.log4j.Logger;
 import org.wso2.transport.jms.contract.JMSClientConnector;
 import org.wso2.transport.jms.exception.JMSConnectorException;
 import org.wso2.transport.jms.utils.JMSConstants;
@@ -39,7 +38,6 @@ import javax.jms.TextMessage;
  * JMS publisher which creates the message and sends to JMS.
  */
 public class JMSPublisher implements Runnable {
-    private static final Logger log = Logger.getLogger(JMSPublisher.class);
     private Map<String, String> jmsProperties;
     private JMSClientConnector jmsClientConnector;
     private Message message;
