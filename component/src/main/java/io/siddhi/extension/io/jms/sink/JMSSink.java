@@ -34,7 +34,8 @@ import io.siddhi.core.util.transport.Option;
 import io.siddhi.core.util.transport.OptionHolder;
 import io.siddhi.extension.io.jms.util.JMSOptionsMapper;
 import io.siddhi.query.api.definition.StreamDefinition;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.wso2.transport.jms.contract.JMSClientConnector;
 import org.wso2.transport.jms.exception.JMSConnectorException;
 import org.wso2.transport.jms.impl.JMSConnectorFactoryImpl;
@@ -117,7 +118,7 @@ import static io.siddhi.extension.io.jms.util.JMSOptionsMapper.DESTINATION;
         }
 )
 public class JMSSink extends Sink {
-    private static final Logger log = Logger.getLogger(JMSSink.class);
+    private static final Logger log = LogManager.getLogger(JMSSink.class);
     private OptionHolder optionHolder;
     private JMSClientConnector clientConnector;
     private Option destination;
