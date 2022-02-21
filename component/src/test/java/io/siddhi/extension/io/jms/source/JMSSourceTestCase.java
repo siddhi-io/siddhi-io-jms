@@ -355,11 +355,7 @@ public class JMSSourceTestCase {
         logger.setLevel(Level.ALL);
         logger.addAppender(appender);
         appender.start();
-
-
-//        log = Logger.getLogger(Source.class);
-//        UnitTestAppender appender = new UnitTestAppender();
-//        log.addAppender(appender);
+        
         receivedEventNameList = new ArrayList<>(2);
 
         // starting the ActiveMQ broker
